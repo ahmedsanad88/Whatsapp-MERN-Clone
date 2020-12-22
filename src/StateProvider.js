@@ -1,0 +1,20 @@
+//jshint esversion:6
+
+import React, { createContext, useContext, useReducer } from "react";
+
+
+// prepare the dataLayer
+export const StateContext = createContext();
+
+// wrap our app and provide the dataLayer
+
+export const StateProvider = ({ reducer, initialState, 
+    children}) => (
+        // the below code used to push data to datalayer
+    <StateContext.Provider value={useReducer(reducer, initialState)}>
+        {children}
+    </StateContext.Provider>
+);
+
+//  Pull information from the data layer
+export const useStateValue = () => useContext(StateContext);
